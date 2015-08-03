@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1 Hello
+  p Welcome to our form
+  form(method='POST')
+      input(type='text', id='fName', name='fName', placeholder='Enter first name') 
+      br
+      br
+      |   
+      input(type='text', id='sName', name='sName', placeholder='Enter second name')
+      br
+      br
+      |   
+      input(type='text', id='qt',name='qt', placeholder='Enter quantity')
+      br
+      br
+      |   
+      input(type='submit', id='submit', value='Submit')
+  br
+  a(href='/about') About us
+  script.
+      window.onload = function(){
+        var fName = document.getElementById('fName');
+        var sName = document.getElementById('sName');
+        var qt = document.getElementById('qt');
+        var submit = document.getElementById('submit');
+        submit.disabled = true;
+        var inputs = document.getElementsByTagName('input');
+        for(var i = 0; i < inputs.length; i++){
+      	  inputs[i].onkeyup = formValidator;
+        }
+      }
+      function formValidator(){
+      	if(fName.value.length && sName.value.length && qt.value.length){
+      	  submit.disabled = false;
+      	} else {
+      	  submit.disabled = true;
+      	}
+      }
+
+
+    
